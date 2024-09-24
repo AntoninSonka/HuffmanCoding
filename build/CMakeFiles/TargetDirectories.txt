@@ -1,0 +1,3 @@
+/home/antonin/Code/C/HuffmanCoding/build/CMakeFiles/main.dir
+/home/antonin/Code/C/HuffmanCoding/build/CMakeFiles/edit_cache.dir
+/home/antonin/Code/C/HuffmanCoding/build/CMakeFiles/rebuild_cache.dir
