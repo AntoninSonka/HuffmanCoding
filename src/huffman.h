@@ -16,10 +16,12 @@ char* readFile(const char*, int*);
 
 // huffman.c
 
-struct Node* createNode(char);
-
 struct Node** createNodeArr(char*, int, int*);
 
 void heapify(struct Node** arr, int arrSize);
+
+struct Node* buildHuffmanTree(struct Node**, int);
+
+void freeTree(struct Node*);
 
 #endif //! HUFFMAN_H

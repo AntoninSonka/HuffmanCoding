@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-struct Node* createNode(char ch){
+static struct Node* createNode(char ch){
     struct Node* node = (struct Node*) malloc(sizeof(struct Node));
     node->ch = ch;
     node->frequency = 1;
@@ -46,13 +46,15 @@ struct Node** createNodeArr(char* text, int textSize, int* arrSize){
     return arr;
 }
 
-void swap(struct Node** x, struct Node** y){
+//-------------
+
+static void swap(struct Node** x, struct Node** y){
     struct Node* z = *x;
     *x = *y;
     *y = z;
 }
 
-void traverseDown(struct Node** arr, int index, int arrSize){
+static void traverseDown(struct Node** arr, int index, int arrSize){
     if(index > (arrSize / 2 - 1)){
         return;
     }
@@ -85,44 +87,52 @@ void heapify(struct Node** arr, int arrSize){
     }
 }
 
+//-------------
 
-/*
- *
- *
- *         [*1, *5, *9, *10]
- *
- *          || pull first out
- *          \/
- *
- *        [*5, *9, *10, NULL]
- *
- *         || pull second out
- *         \/
- *
- *        [*9, *10, NULL, NULL]
- *
- *         make new node with sum of those 2 elements and assign the 2 nodes as left and right child
- *
- *         6 = 1 + 5
- *
- *         6->left = 1
- *         6->right = 5
- *
- *         || push *6 into heap
- *         \/
- *
- *        [*6, *9, *10, NULL]
- *
- *        repeat untill one element lefts
- *
- *        [*25, NULL, NULL, NULL]
- *
- *         || pull last out
- *         \/
- *
- *        free [NULL, NULL, NULL, NULL]
- *
- *        return saved element
- *
- *
- */
+static void traverseUp(struct Node** arr, int index){
+    if(index >= 0){
+        return;
+    }
+    
+    if(((index - 1) / 2) >= 0){
+        if(arr[index]->frequency <= arr[(index - 1) / 2]->frequency){
+            swap(&arr[index], &arr[(index - 1) / 2]);
+            traverseUp(arr, (index - 1) / 2);
+        }
+    }
+}
+
+struct Node* buildHuffmanTree(struct Node** arr, int arrSize){
+
+    while(arrSize != 1){
+        struct Node* root = createNode(NULL);
+
+        root->left = arr[0];
+        swap(&arr[0], &arr[arrSize - 1]);
+        arr[arrSize - 1] = NULL;
+        --arrSize;
+
+        traverseDown(arr, 0, arrSize);
+
+        root->right = arr[0];
+        swap(&arr[0], &arr[arrSize - 1]);
+        arr[arrSize - 1] = NULL;
+
+        root->frequency = root->left->frequency + root->right->frequency;
+        arr[arrSize - 1] = root;
+    }
+    struct Node* root = arr[0];
+    arr[0] = NULL;
+    free(arr);
+    return root;
+}
+
+void freeTree(struct Node* root){
+    if(root->left == NULL && root->right == NULL){
+        free(root);
+        return;
+    }
+
+    freeTree(root->left);
+    freeTree(root->right);
+}
