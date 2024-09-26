@@ -70,11 +70,13 @@ int main(int argc, char* argv[]){
     
     printf("------------------------------------------\n");
 
-    for(int i = 0; i < arrSize; ++i){
-        free(arr[i]);
-    }
-    free(arr);
+    struct Node* root = buildHuffmanTree(arr, arrSize);
 
+    printf("---------------HUFFMAN-TREE---------------\n");
+    printf("------------------------------------------\n");
+    printTree(root);
+    printf("------------------------------------------\n");
+    freeTree(root);
     free(text);
 
     return 0;

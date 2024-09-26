@@ -105,7 +105,7 @@ static void traverseUp(struct Node** arr, int index){
 struct Node* buildHuffmanTree(struct Node** arr, int arrSize){
 
     while(arrSize != 1){
-        struct Node* root = createNode(NULL);
+        struct Node* root = createNode('\0');
 
         root->left = arr[0];
         swap(&arr[0], &arr[arrSize - 1]);
@@ -130,9 +130,20 @@ struct Node* buildHuffmanTree(struct Node** arr, int arrSize){
 void freeTree(struct Node* root){
     if(root->left == NULL && root->right == NULL){
         free(root);
+        root = NULL;
         return;
     }
 
     freeTree(root->left);
     freeTree(root->right);
+}
+
+void printTree(struct Node* root){
+    if(root->left == NULL && root->right == NULL){
+        printf("leaf: %c, frequency: %d\n", root->ch, root->frequency);
+        return;
+    }
+    printTree(root->left);
+    printTree(root->right);
+    printf("brench: frequency: %d\n", root->frequency);
 }

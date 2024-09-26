@@ -24,4 +24,6 @@ struct Node* buildHuffmanTree(struct Node**, int);
 
 void freeTree(struct Node*);
 
+void printTree(struct Node*);
+
 #endif //! HUFFMAN_H
