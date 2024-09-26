@@ -1,3 +1,7 @@
+#define MEMEWATCH
+//#define MW_STDIO
+#include "../memwatch/memwatch.h"
+
 #include "huffman.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,6 +29,8 @@ char* readFile(const char* path, int* fileSize){
     for(int i = 0; i < *fileSize; ++i){
         text[i] = fgetc(file);
     }
+
+    fclose(file);
 
     return text;
 }

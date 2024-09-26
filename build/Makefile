@@ -129,6 +129,30 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+memwatch/memwatch.o: memwatch/memwatch.c.o
+.PHONY : memwatch/memwatch.o
+
+# target to build an object file
+memwatch/memwatch.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/memwatch/memwatch.c.o
+.PHONY : memwatch/memwatch.c.o
+
+memwatch/memwatch.i: memwatch/memwatch.c.i
+.PHONY : memwatch/memwatch.i
+
+# target to preprocess a source file
+memwatch/memwatch.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/memwatch/memwatch.c.i
+.PHONY : memwatch/memwatch.c.i
+
+memwatch/memwatch.s: memwatch/memwatch.c.s
+.PHONY : memwatch/memwatch.s
+
+# target to generate assembly for a file
+memwatch/memwatch.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/memwatch/memwatch.c.s
+.PHONY : memwatch/memwatch.c.s
+
 src/file.o: src/file.c.o
 .PHONY : src/file.o
 
@@ -210,6 +234,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... memwatch/memwatch.o"
+	@echo "... memwatch/memwatch.i"
+	@echo "... memwatch/memwatch.s"
 	@echo "... src/file.o"
 	@echo "... src/file.i"
 	@echo "... src/file.s"

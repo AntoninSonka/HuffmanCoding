@@ -1,3 +1,7 @@
+#define MEMEWATCH
+//#define MW_STDIO
+#include "../memwatch/memwatch.h"
+
 #include "huffman.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,7 +33,7 @@ int main(int argc, char* argv[]){
     struct Node** arr = createNodeArr(text, textSize, &arrSize);
 
     if(arr == NULL){
-    free(text);
+        free(text);
         printf("Exiting with code: %d\n", 3);
         return 3;
     }

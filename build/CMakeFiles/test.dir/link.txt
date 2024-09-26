@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/test.dir/src/file.c.o CMakeFiles/test.dir/src/huffman.c.o CMakeFiles/test.dir/src/main.c.o CMakeFiles/test.dir/src/test/memwatch.c.o -o test

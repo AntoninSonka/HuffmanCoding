@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/antonin/Code/C/HuffmanCoding/memwatch/memwatch.c" "CMakeFiles/main.dir/memwatch/memwatch.c.o" "gcc" "CMakeFiles/main.dir/memwatch/memwatch.c.o.d"
-  "/home/antonin/Code/C/HuffmanCoding/src/file.c" "CMakeFiles/main.dir/src/file.c.o" "gcc" "CMakeFiles/main.dir/src/file.c.o.d"
-  "/home/antonin/Code/C/HuffmanCoding/src/huffman.c" "CMakeFiles/main.dir/src/huffman.c.o" "gcc" "CMakeFiles/main.dir/src/huffman.c.o.d"
-  "/home/antonin/Code/C/HuffmanCoding/src/main.c" "CMakeFiles/main.dir/src/main.c.o" "gcc" "CMakeFiles/main.dir/src/main.c.o.d"
+  "/home/antonin/Code/C/HuffmanCoding/src/file.c" "CMakeFiles/test.dir/src/file.c.o" "gcc" "CMakeFiles/test.dir/src/file.c.o.d"
+  "/home/antonin/Code/C/HuffmanCoding/src/huffman.c" "CMakeFiles/test.dir/src/huffman.c.o" "gcc" "CMakeFiles/test.dir/src/huffman.c.o.d"
+  "/home/antonin/Code/C/HuffmanCoding/src/main.c" "CMakeFiles/test.dir/src/main.c.o" "gcc" "CMakeFiles/test.dir/src/main.c.o.d"
+  "/home/antonin/Code/C/HuffmanCoding/src/test/memwatch.c" "CMakeFiles/test.dir/src/test/memwatch.c.o" "gcc" "CMakeFiles/test.dir/src/test/memwatch.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

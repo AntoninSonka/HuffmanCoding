@@ -1,9 +1,13 @@
+#define MEMEWATCH
+//#define MW_STDIO
+#include "../memwatch/memwatch.h"
+
 #include "huffman.h"
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
 
-static struct Node* createNode(char ch){
+struct Node* createNode(char ch){
     struct Node* node = (struct Node*) malloc(sizeof(struct Node));
     node->ch = ch;
     node->frequency = 1;
@@ -48,13 +52,13 @@ struct Node** createNodeArr(char* text, int textSize, int* arrSize){
 
 //-------------
 
-static void swap(struct Node** x, struct Node** y){
+void swap(struct Node** x, struct Node** y){
     struct Node* z = *x;
     *x = *y;
     *y = z;
 }
 
-static void traverseDown(struct Node** arr, int index, int arrSize){
+void traverseDown(struct Node** arr, int index, int arrSize){
     if(index > (arrSize / 2 - 1)){
         return;
     }
@@ -89,7 +93,7 @@ void heapify(struct Node** arr, int arrSize){
 
 //-------------
 
-static void traverseUp(struct Node** arr, int index){
+void traverseUp(struct Node** arr, int index){
     if(index >= 0){
         return;
     }
@@ -130,12 +134,12 @@ struct Node* buildHuffmanTree(struct Node** arr, int arrSize){
 void freeTree(struct Node* root){
     if(root->left == NULL && root->right == NULL){
         free(root);
-        root = NULL;
         return;
     }
 
     freeTree(root->left);
     freeTree(root->right);
+    free(root);
 }
 
 void printTree(struct Node* root){

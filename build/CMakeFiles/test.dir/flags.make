@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -DMEMWATCH -DMW_STDIO
 
-C_INCLUDES = -I/home/antonin/Code/C/HuffmanCoding/memwatch
+C_INCLUDES = 
 
 C_FLAGS = 
 
