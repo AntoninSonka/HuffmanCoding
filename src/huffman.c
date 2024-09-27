@@ -125,6 +125,7 @@ struct Node* buildHuffmanTree(struct Node** arr, int arrSize){
 
         root->frequency = root->left->frequency + root->right->frequency;
         arr[arrSize - 1] = root;
+        traverseUp(arr, arrSize - 1);
     }
     struct Node* root = arr[0];
     arr[0] = NULL;
