@@ -156,6 +156,7 @@ CMakeFiles/main.dir/src/file.c.o: /home/antonin/Code/C/HuffmanCoding/src/file.c 
   /usr/include/sys/select.h \
   /usr/include/sys/types.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdbool.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h
 
 CMakeFiles/main.dir/src/huffman.c.o: /home/antonin/Code/C/HuffmanCoding/src/huffman.c \
@@ -273,14 +274,15 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
   /usr/include/sys/select.h \
   /usr/include/sys/types.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdbool.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h
 
 
 /home/antonin/Code/C/HuffmanCoding/src/main.c:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdbool.h:
-
 /home/antonin/Code/C/HuffmanCoding/src/huffman.c:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdbool.h:
 
 /home/antonin/Code/C/HuffmanCoding/src/huffman.h:
 

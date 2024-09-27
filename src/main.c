@@ -78,7 +78,7 @@ int main(int argc, char* argv[]){
 
     printf("---------------HUFFMAN-TREE---------------\n");
     printf("------------------------------------------\n");
-    printTree(root);
+    printTree(root, true);
     printf("------------------------------------------\n");
     freeTree(root);
     free(text);

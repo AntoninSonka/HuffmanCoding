@@ -4,7 +4,6 @@
 
 #include "huffman.h"
 #include <stdlib.h>
-#include <stdbool.h>
 #include <stdio.h>
 
 struct Node* createNode(char ch){
@@ -110,7 +109,9 @@ struct Node* buildHuffmanTree(struct Node** arr, int arrSize){
 
     while(arrSize != 1){
         struct Node* root = createNode('\0');
-
+        
+        
+        traverseDown(arr, 0, arrSize);
         root->left = arr[0];
         swap(&arr[0], &arr[arrSize - 1]);
         arr[arrSize - 1] = NULL;
@@ -142,12 +143,18 @@ void freeTree(struct Node* root){
     free(root);
 }
 
-void printTree(struct Node* root){
+void printTree(struct Node* root, bool isLeft){
+    if(isLeft){
+        printf("\nleft: ");
+    }
+    else{
+        printf("\nright: ");
+    }
     if(root->left == NULL && root->right == NULL){
-        printf("leaf: %c, frequency: %d\n", root->ch, root->frequency);
+        printf("leaf: %c, frequency: %d   ", root->ch, root->frequency);
         return;
     }
-    printTree(root->left);
-    printTree(root->right);
     printf("brench: frequency: %d\n", root->frequency);
+    printTree(root->left, true);
+    printTree(root->right, false);
 }

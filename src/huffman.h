@@ -1,6 +1,7 @@
 #ifndef HUFFMAN_H
 #define HUFFMAN_H
 
+#include <stdbool.h>
 
 struct Node {
     char ch;
@@ -24,6 +25,6 @@ struct Node* buildHuffmanTree(struct Node**, int);
 
 void freeTree(struct Node*);
 
-void printTree(struct Node*);
+void printTree(struct Node*, bool);
 
 #endif //! HUFFMAN_H
