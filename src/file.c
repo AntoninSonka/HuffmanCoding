@@ -5,6 +5,7 @@
 #include "huffman.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 char* readFile(const char* path, int* fileSize){
     FILE* file = fopen(path, "r");
@@ -33,4 +34,21 @@ char* readFile(const char* path, int* fileSize){
     fclose(file);
 
     return text;
+}
+
+void writeCodeToFile(char* text, int fileSize, struct Node* root){
+    uint8_t data;
+    short int bitCount = 0;
+    int count = 0;
+    while(count != fileSize){
+        struct Node* child;
+        while(1){
+            
+            if(child->ch == '\0'){
+                break;
+            }
+        }
+        count++;
+    }
+
 }

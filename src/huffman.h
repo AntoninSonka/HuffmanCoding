@@ -2,6 +2,7 @@
 #define HUFFMAN_H
 
 #include <stdbool.h>
+#include <stdint.h>
 
 struct Node {
     char ch;
@@ -15,6 +16,8 @@ struct Node {
 
 char* readFile(const char*, int*);
 
+void writeCodeToFile(char*, int, struct Node*);
+
 // huffman.c
 
 struct Node** createNodeArr(char*, int, int*);
@@ -24,6 +27,8 @@ void heapify(struct Node** arr, int arrSize);
 struct Node* buildHuffmanTree(struct Node**, int);
 
 void freeTree(struct Node*);
+
+void generateCodes(struct Node*);
 
 void printTree(struct Node*, bool);
 
