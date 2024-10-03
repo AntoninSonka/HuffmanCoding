@@ -6,6 +6,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void printBinary(int depth, uint16_t num){
+    for(int i = depth - 1; i >= 0; --i){
+        int bit = (num >> i) & 1;
+        printf("%d", bit);
+    }
+}
+
 int main(int argc, char* argv[]){
 
     if(argc != 2){
@@ -80,6 +87,22 @@ int main(int argc, char* argv[]){
     printf("------------------------------------------\n");
     printTree(root, true);
     printf("\n------------------------------------------\n");
+
+    struct Code** codeArr = assignCodes(root, arrSize);
+    printf("------------------CODES-------------------\n");
+    printf("------------------------------------------\n");
+    for(int i = 0; i < arrSize; ++i){
+        printf("ch: %c, f: %d, depth: %d, binaryCode: ", codeArr[i]->ch, codeArr[i]->frequency, codeArr[i]->depth);
+        printBinary(codeArr[i]->depth, codeArr[i]->code);
+        printf("\n");
+    }
+    printf("------------------------------------------\n");
+    
+    for(int i = 0; i < arrSize; ++i){
+        free(codeArr[i]);
+    }
+    free(codeArr);
+
     freeTree(root);
     free(text);
 

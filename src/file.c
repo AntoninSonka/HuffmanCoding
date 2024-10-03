@@ -36,19 +36,20 @@ char* readFile(const char* path, int* fileSize){
     return text;
 }
 
-void writeCodeToFile(char* text, int fileSize, struct Node* root){
+/*void writeCodeToFile(char* text, int fileSize, struct Node* root){
     uint8_t data;
     short int bitCount = 0;
     int count = 0;
     while(count != fileSize){
         struct Node* child;
         while(1){
-            
             if(child->ch == '\0'){
                 break;
             }
+
         }
+        //write
         count++;
     }
 
-}
+}*/

@@ -159,3 +159,50 @@ void printTree(struct Node* root, bool isLeft){
     printTree(root->left, true);
     printTree(root->right, false);
 }
+
+void assignNewCode(struct Node* root, struct Code** arr, int* index, uint16_t* currentCode, int* depth){
+    if(root->left == NULL && root->right == NULL){
+        arr[*index] = (struct Code*) malloc(sizeof(struct Code));
+        arr[*index]->ch = root->ch;
+        arr[*index]->frequency = root->frequency;
+        arr[*index]->code = *currentCode;
+        arr[*index]->depth = *depth;
+        (*currentCode) >>= 1;
+        --(*depth);
+        ++(*index);
+        return;
+    }
+    (*currentCode) <<= 1;
+    ++(*depth);
+    assignNewCode(root->left, arr, index, currentCode, depth);
+
+    (*currentCode) <<= 1;
+    (*currentCode) |= 0b1;
+    ++(*depth);
+    assignNewCode(root->right, arr, index, currentCode, depth);
+    
+    --(*depth);
+    (*currentCode) >>= 1;
+}
+
+int compare(const void* x, const void* y){
+    struct Code* codeX = *((struct Code**) x);
+    struct Code* codeY = *((struct Code**) y);
+    if(codeX->frequency < codeY->frequency){
+        return 1;
+    }
+    if(codeX->frequency > codeY->frequency){
+        return -1;
+    }
+    return 0;
+}
+
+struct Code** assignCodes(struct Node* root, int arrSize){
+    struct Code** arr = (struct Code**) malloc(sizeof(struct Code*) * arrSize);
+    int index = 0;
+    uint16_t currentCode = 0;
+    int depth = 0;
+    assignNewCode(root, arr, &index, &currentCode, &depth);
+    qsort(arr, arrSize, sizeof(struct Code*), *compare);
+    return arr;
+}

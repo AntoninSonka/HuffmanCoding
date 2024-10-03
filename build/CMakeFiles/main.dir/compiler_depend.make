@@ -116,6 +116,8 @@ CMakeFiles/main.dir/src/file.c.o: /home/antonin/Code/C/HuffmanCoding/src/file.c 
   /usr/include/bits/pthreadtypes.h \
   /usr/include/bits/select.h \
   /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
   /usr/include/bits/stdio_lim.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
@@ -143,6 +145,7 @@ CMakeFiles/main.dir/src/file.c.o: /home/antonin/Code/C/HuffmanCoding/src/file.c 
   /usr/include/bits/uintn-identity.h \
   /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wchar.h \
   /usr/include/bits/wordsize.h \
   /usr/include/endian.h \
   /usr/include/features-time64.h \
@@ -150,6 +153,7 @@ CMakeFiles/main.dir/src/file.c.o: /home/antonin/Code/C/HuffmanCoding/src/file.c 
   /usr/include/gnu/stubs-64.h \
   /usr/include/gnu/stubs.h \
   /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
   /usr/include/sys/cdefs.h \
@@ -157,7 +161,8 @@ CMakeFiles/main.dir/src/file.c.o: /home/antonin/Code/C/HuffmanCoding/src/file.c 
   /usr/include/sys/types.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdbool.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h
 
 CMakeFiles/main.dir/src/huffman.c.o: /home/antonin/Code/C/HuffmanCoding/src/huffman.c \
   /home/antonin/Code/C/HuffmanCoding/memwatch/memwatch.h \
@@ -175,6 +180,8 @@ CMakeFiles/main.dir/src/huffman.c.o: /home/antonin/Code/C/HuffmanCoding/src/huff
   /usr/include/bits/pthreadtypes.h \
   /usr/include/bits/select.h \
   /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
   /usr/include/bits/stdio_lim.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
@@ -202,6 +209,7 @@ CMakeFiles/main.dir/src/huffman.c.o: /home/antonin/Code/C/HuffmanCoding/src/huff
   /usr/include/bits/uintn-identity.h \
   /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wchar.h \
   /usr/include/bits/wordsize.h \
   /usr/include/endian.h \
   /usr/include/features-time64.h \
@@ -209,6 +217,7 @@ CMakeFiles/main.dir/src/huffman.c.o: /home/antonin/Code/C/HuffmanCoding/src/huff
   /usr/include/gnu/stubs-64.h \
   /usr/include/gnu/stubs.h \
   /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
   /usr/include/sys/cdefs.h \
@@ -216,7 +225,8 @@ CMakeFiles/main.dir/src/huffman.c.o: /home/antonin/Code/C/HuffmanCoding/src/huff
   /usr/include/sys/types.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdbool.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h
 
 CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c \
   /home/antonin/Code/C/HuffmanCoding/memwatch/memwatch.h \
@@ -234,6 +244,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
   /usr/include/bits/pthreadtypes.h \
   /usr/include/bits/select.h \
   /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
   /usr/include/bits/stdio_lim.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
@@ -261,6 +273,7 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
   /usr/include/bits/uintn-identity.h \
   /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wchar.h \
   /usr/include/bits/wordsize.h \
   /usr/include/endian.h \
   /usr/include/features-time64.h \
@@ -268,6 +281,7 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
   /usr/include/gnu/stubs-64.h \
   /usr/include/gnu/stubs.h \
   /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
   /usr/include/sys/cdefs.h \
@@ -275,7 +289,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
   /usr/include/sys/types.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdbool.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h
 
 
 /home/antonin/Code/C/HuffmanCoding/src/main.c:
@@ -283,6 +298,10 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 /home/antonin/Code/C/HuffmanCoding/src/huffman.c:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdbool.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/stdint-least.h:
 
 /home/antonin/Code/C/HuffmanCoding/src/huffman.h:
 
@@ -323,6 +342,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 /usr/include/stdio.h:
 
 /usr/include/bits/types/timer_t.h:
+
+/usr/include/bits/wchar.h:
 
 /usr/include/bits/types/struct_tm.h:
 
@@ -408,6 +429,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 
 /usr/include/bits/pthread_stack_min.h:
 
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h:
+
 /usr/include/bits/siginfo-consts.h:
 
 /usr/include/bits/libc-header-start.h:
@@ -473,6 +496,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 /usr/include/bits/atomic_wide_counter.h:
 
 /usr/include/bits/types/clockid_t.h:
+
+/usr/include/bits/stdint-uintn.h:
 
 /usr/include/endian.h:
 
