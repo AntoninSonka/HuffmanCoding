@@ -27,6 +27,7 @@ int main(int argc, char* argv[]){
 
     if(text == NULL){
         printf("Exiting with code %d\n", 2);
+        return 2;
     }
     
     printf("--------------TEXT-FROM-FILE--------------\n");
@@ -120,6 +121,13 @@ int main(int argc, char* argv[]){
 
     freeTree(root);
     free(text);
+    
+    printf("\ntest head\n");
+    int treeBitSize = 127;
+    int textBitSize = 127;
+    uint16_t head = createFileHead(textBitSize, treeBitSize);
+    printf("%b", head);
+    printf("\n");
 
     return 0;
 }

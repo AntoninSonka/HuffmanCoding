@@ -174,8 +174,15 @@ CMakeFiles/main.dir/src/huffman.c.o: /home/antonin/Code/C/HuffmanCoding/src/huff
   /usr/include/bits/endianness.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
   /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
   /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls.h \
   /usr/include/bits/pthreadtypes-arch.h \
   /usr/include/bits/pthreadtypes.h \
   /usr/include/bits/select.h \
@@ -216,6 +223,7 @@ CMakeFiles/main.dir/src/huffman.c.o: /home/antonin/Code/C/HuffmanCoding/src/huff
   /usr/include/features.h \
   /usr/include/gnu/stubs-64.h \
   /usr/include/gnu/stubs.h \
+  /usr/include/math.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -295,6 +303,12 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 
 /home/antonin/Code/C/HuffmanCoding/src/main.c:
 
+/usr/include/bits/mathcalls.h:
+
+/usr/include/bits/fp-logb.h:
+
+/usr/include/bits/flt-eval-method.h:
+
 /home/antonin/Code/C/HuffmanCoding/src/huffman.c:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdbool.h:
@@ -357,6 +371,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 
 /usr/include/bits/signum-generic.h:
 
+/usr/include/math.h:
+
 /usr/include/gnu/stubs.h:
 
 /usr/include/bits/sigstack.h:
@@ -407,6 +423,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 
 /usr/include/bits/pthread_stack_min-dynamic.h:
 
+/usr/include/bits/libm-simd-decl-stubs.h:
+
 /usr/include/bits/types/sigval_t.h:
 
 /usr/include/bits/waitstatus.h:
@@ -416,6 +434,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 /usr/include/limits.h:
 
 /usr/include/bits/types/FILE.h:
+
+/usr/include/bits/fp-fast.h:
 
 /usr/include/bits/posix1_lim.h:
 
@@ -475,6 +495,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 
 /usr/include/bits/types/sigset_t.h:
 
+/usr/include/bits/mathcalls-helper-functions.h:
+
 /usr/include/bits/types/time_t.h:
 
 /usr/include/bits/struct_rwlock.h:
@@ -484,6 +506,8 @@ CMakeFiles/main.dir/src/main.c.o: /home/antonin/Code/C/HuffmanCoding/src/main.c 
 /usr/include/bits/siginfo-arch.h:
 
 /usr/include/bits/types.h:
+
+/usr/include/bits/math-vector.h:
 
 /usr/include/bits/types/__fpos_t.h:
 

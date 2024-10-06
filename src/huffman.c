@@ -1,3 +1,4 @@
+#include <stdint.h>
 #define MEMEWATCH
 //#define MW_STDIO
 #include "../memwatch/memwatch.h"
@@ -5,6 +6,7 @@
 #include "huffman.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 struct Node* createNode(char ch){
     struct Node* node = (struct Node*) malloc(sizeof(struct Node));
@@ -238,3 +240,47 @@ struct Tree** assignTree(struct Node* root, int treeSize){
     assignNewTree(root, arr, &index, 0);
     return arr;
 }
+
+uint16_t createFileHead(int textBitSize, int treeBitSize){ // I don't even know whats happening here, it just works, okay?
+
+    // textBitSize and treeBitSize is how large are they in bits, not how many bits you need to represent them
+
+    uint16_t head = 0b0;
+    head <<= 1;
+    head |= 0b1; // It is a text file, so 1 on the start
+    head <<= 5;  // Just blank bits, because I needed 2 bytes. I will probably use it for flags or something
+
+    int roundedTextBitSize = 0;
+    if(textBitSize % 8 == 0) // If its not by bytes exacly, it does that thing and is is by bytes now
+        roundedTextBitSize = textBitSize;
+    else
+        roundedTextBitSize = textBitSize / 8 * 8 + 8;
+
+
+    uint8_t textPadding = roundedTextBitSize - textBitSize;
+    head <<= 3; // Adds how many zeros will fill the rest of text file
+    head |= textPadding;
+
+    uint8_t bytesNeededText = ((((int)log2(textBitSize)) + 1) + 7) / 8; // This somehow works, I dont really know how or why, but yah
+    --bytesNeededText;
+    head <<= 2;
+    head |= bytesNeededText;
+    
+    // The same thing as before, but for the tree
+
+    int roundedTreeBitSize = 0;
+    if(treeBitSize % 8 == 0)
+        roundedTreeBitSize = treeBitSize;
+    else
+        roundedTreeBitSize = treeBitSize / 8 * 8 + 8;
+
+    uint8_t treePadding = roundedTreeBitSize - treeBitSize;
+    head <<= 3;
+    head |= treePadding;
+
+    uint8_t bytesNeededTree = ((((int)log2(textBitSize)) + 1) + 7) / 8;
+    --bytesNeededTree;
+    head <<= 2;
+    head |= bytesNeededTree;
+    return head;
+} // This thing can support text up to 4 Gigs long after compression, so yeah. I think...

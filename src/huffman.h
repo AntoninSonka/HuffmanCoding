@@ -42,6 +42,9 @@ void freeTree(struct Node*);
 void printTree(struct Node*, bool);
 
 struct Code** assignCodes(struct Node*, int, int*);
+
 struct Tree** assignTree(struct Node*, int);
+
+uint16_t createFileHead(int, int);
 
 #endif //! HUFFMAN_H

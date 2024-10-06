@@ -10,4 +10,7 @@ add_definitions(-DMEMWATCH -DMW_STDIO)
 
 include_directories(memwatch)
 
+
 add_executable(main ${SOURCES} ${MEMWATCH_SRC})
+
+target_link_libraries(main m)
