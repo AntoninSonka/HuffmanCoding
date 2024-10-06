@@ -13,9 +13,14 @@ struct Node {
 
 struct Code {
     uint16_t code;
-    int depth; // is also number of bits from right, but +1
+    int depth; // is also number of bits from rigt
     char ch;
     int frequency;
+};
+
+struct Tree {
+    uint8_t identefire;
+    char ch;
 };
 
 // file.c
@@ -28,7 +33,7 @@ char* readFile(const char*, int*);
 
 struct Node** createNodeArr(char*, int, int*);
 
-void heapify(struct Node** arr, int arrSize);
+void heapify(struct Node**, int);
 
 struct Node* buildHuffmanTree(struct Node**, int);
 
@@ -36,6 +41,7 @@ void freeTree(struct Node*);
 
 void printTree(struct Node*, bool);
 
-struct Code** assignCodes(struct Node* root, int arrSize);
+struct Code** assignCodes(struct Node*, int, int*);
+struct Tree** assignTree(struct Node*, int);
 
 #endif //! HUFFMAN_H

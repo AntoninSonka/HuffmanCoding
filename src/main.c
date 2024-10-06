@@ -80,7 +80,6 @@ int main(int argc, char* argv[]){
     }
     
     printf("------------------------------------------\n");
-
     struct Node* root = buildHuffmanTree(arr, arrSize);
 
     printf("---------------HUFFMAN-TREE---------------\n");
@@ -88,7 +87,8 @@ int main(int argc, char* argv[]){
     printTree(root, true);
     printf("\n------------------------------------------\n");
 
-    struct Code** codeArr = assignCodes(root, arrSize);
+    int treeSize = 0;
+    struct Code** codeArr = assignCodes(root, arrSize, &treeSize);
     printf("------------------CODES-------------------\n");
     printf("------------------------------------------\n");
     for(int i = 0; i < arrSize; ++i){
@@ -97,7 +97,22 @@ int main(int argc, char* argv[]){
         printf("\n");
     }
     printf("------------------------------------------\n");
-    
+   
+    struct Tree** treeArr = assignTree(root, treeSize);
+    printf("------------------CODES-------------------\n");
+    printf("------------------------------------------\n");
+    for(int i = 0; i < treeSize; ++i){
+        printBinary(2, treeArr[i]->identefire);
+        if(treeArr[i]->identefire == 0b00 || treeArr[i]->identefire == 0b11){
+            printf(", ch: %c", treeArr[i]->ch);
+        }
+        printf("\n");
+    }
+    printf("------------------------------------------\n");
+    for(int i = 0; i < treeSize; ++i){
+        free(treeArr[i]);
+    }
+    free(treeArr);
     for(int i = 0; i < arrSize; ++i){
         free(codeArr[i]);
     }

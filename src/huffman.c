@@ -160,7 +160,7 @@ void printTree(struct Node* root, bool isLeft){
     printTree(root->right, false);
 }
 
-void assignNewCode(struct Node* root, struct Code** arr, int* index, uint16_t* currentCode, int* depth){
+void assignNewCode(struct Node* root, struct Code** arr, int* index, uint16_t* currentCode, int* depth, int* treeSize){
     if(root->left == NULL && root->right == NULL){
         arr[*index] = (struct Code*) malloc(sizeof(struct Code));
         arr[*index]->ch = root->ch;
@@ -172,14 +172,16 @@ void assignNewCode(struct Node* root, struct Code** arr, int* index, uint16_t* c
         ++(*index);
         return;
     }
+    ++(*treeSize);
     (*currentCode) <<= 1;
     ++(*depth);
-    assignNewCode(root->left, arr, index, currentCode, depth);
+    assignNewCode(root->left, arr, index, currentCode, depth, treeSize);
 
+    ++(*treeSize);
     (*currentCode) <<= 1;
     (*currentCode) |= 0b1;
     ++(*depth);
-    assignNewCode(root->right, arr, index, currentCode, depth);
+    assignNewCode(root->right, arr, index, currentCode, depth, treeSize);
     
     --(*depth);
     (*currentCode) >>= 1;
@@ -197,12 +199,42 @@ int compare(const void* x, const void* y){
     return 0;
 }
 
-struct Code** assignCodes(struct Node* root, int arrSize){
+struct Code** assignCodes(struct Node* root, int arrSize, int* treeSize){
     struct Code** arr = (struct Code**) malloc(sizeof(struct Code*) * arrSize);
     int index = 0;
     uint16_t currentCode = 0;
     int depth = 0;
-    assignNewCode(root, arr, &index, &currentCode, &depth);
+    assignNewCode(root, arr, &index, &currentCode, &depth, treeSize);
     qsort(arr, arrSize, sizeof(struct Code*), *compare);
+    return arr;
+}
+
+void assignNewTree(struct Node* root, struct Tree** arr, int* index, bool isLeft){
+    if(root->left == NULL && root->right == NULL){
+        --(*index);
+        if(isLeft){
+            arr[*index]->identefire = 0b00;
+        }
+        else{
+            arr[*index]->identefire = 0b11;
+        }
+        arr[*index]->ch = root->ch;
+        ++(*index);
+        return;
+    }
+    arr[*index] = (struct Tree*) malloc(sizeof(struct Tree));
+    arr[*index]->identefire = 0b10;
+    ++(*index);
+    assignNewTree(root->left, arr, index, 1);
+    arr[*index] = (struct Tree*) malloc(sizeof(struct Tree));
+    arr[*index]->identefire = 0b01;
+    ++(*index);
+    assignNewTree(root->right, arr, index, 0);
+}
+
+struct Tree** assignTree(struct Node* root, int treeSize){
+    struct Tree** arr = (struct Tree**) malloc(sizeof(struct Tree*) * treeSize);
+    int index = 0;
+    assignNewTree(root, arr, &index, 0);
     return arr;
 }
