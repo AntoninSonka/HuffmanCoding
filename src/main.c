@@ -14,7 +14,7 @@ void printBinary(int depth, uint16_t num){
 }
 
 int main(int argc, char* argv[]){
-
+    
     if(argc != 2){
         printf("Bad number of arguments\n");
         printf("Exiting with code: %d\n", 1);
@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
     
     int arrSize;
 
-    struct Node** arr = createNodeArr(text, textSize, &arrSize);
+    Node** arr = createNodeArr(text, textSize, &arrSize);
 
     if(arr == NULL){
         free(text);
@@ -81,7 +81,7 @@ int main(int argc, char* argv[]){
     }
     
     printf("------------------------------------------\n");
-    struct Node* root = buildHuffmanTree(arr, arrSize);
+    Node* root = buildHuffmanTree(arr, arrSize);
 
     printf("---------------HUFFMAN-TREE---------------\n");
     printf("------------------------------------------\n");
@@ -89,7 +89,7 @@ int main(int argc, char* argv[]){
     printf("\n------------------------------------------\n");
 
     int treeSize = 0;
-    struct Code** codeArr = assignCodes(root, arrSize, &treeSize);
+    Code** codeArr = assignCodes(root, arrSize, &treeSize);
     printf("------------------CODES-------------------\n");
     printf("------------------------------------------\n");
     for(int i = 0; i < arrSize; ++i){
@@ -99,7 +99,7 @@ int main(int argc, char* argv[]){
     }
     printf("------------------------------------------\n");
    
-    struct Tree** treeArr = assignTree(root, treeSize);
+    Tree** treeArr = assignTree(root, treeSize);
     printf("------------------CODES-------------------\n");
     printf("------------------------------------------\n");
     for(int i = 0; i < treeSize; ++i){

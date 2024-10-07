@@ -10,6 +10,9 @@ add_definitions(-DMEMWATCH -DMW_STDIO)
 
 include_directories(memwatch)
 
+add_compile_options(-Wall)
+
+set_source_files_properties(memwatch.c PROPERTIES COMPILE_FLAGS "-w")
 
 add_executable(main ${SOURCES} ${MEMWATCH_SRC})
 

@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <math.h>
 
-struct Node* createNode(char ch){
-    struct Node* node = (struct Node*) malloc(sizeof(struct Node));
+Node* createNode(char ch){
+    Node* node = (Node*) malloc(sizeof(Node));
     node->ch = ch;
     node->frequency = 1;
     node->left = NULL;
@@ -17,8 +17,8 @@ struct Node* createNode(char ch){
     return node;
 }
 
-struct Node** createNodeArr(char* text, int textSize, int* arrSize){
-    struct Node** arr = (struct Node**) malloc(sizeof(struct Node*) * 256);
+Node** createNodeArr(char* text, int textSize, int* arrSize){
+    Node** arr = (Node**) malloc(sizeof(Node*) * 256);
     if(arr == NULL){
         printf("Allocation error\n");
         return NULL;
@@ -43,7 +43,7 @@ struct Node** createNodeArr(char* text, int textSize, int* arrSize){
         ++(*arrSize);
     }
 
-    arr = (struct Node**) realloc(arr, sizeof(struct Node*) * *arrSize);
+    arr = (Node**) realloc(arr, sizeof(Node*) * *arrSize);
     if(arr == NULL){
         printf("Reallocation error\n");
         return NULL;
@@ -53,13 +53,13 @@ struct Node** createNodeArr(char* text, int textSize, int* arrSize){
 
 //-------------
 
-void swap(struct Node** x, struct Node** y){
-    struct Node* z = *x;
+void swap(Node** x, Node** y){
+    Node* z = *x;
     *x = *y;
     *y = z;
 }
 
-void traverseDown(struct Node** arr, int index, int arrSize){
+void traverseDown(Node** arr, int index, int arrSize){
     if(index > (arrSize / 2 - 1)){
         return;
     }
@@ -86,7 +86,7 @@ void traverseDown(struct Node** arr, int index, int arrSize){
     }
 }
 
-void heapify(struct Node** arr, int arrSize){
+void heapify(Node** arr, int arrSize){
     for(int i = (arrSize / 2 - 1); i >= 0; --i){
         traverseDown(arr, i, arrSize);
     }
@@ -94,7 +94,7 @@ void heapify(struct Node** arr, int arrSize){
 
 //-------------
 
-void traverseUp(struct Node** arr, int index){
+void traverseUp(Node** arr, int index){
     if(index >= 0){
         return;
     }
@@ -107,10 +107,10 @@ void traverseUp(struct Node** arr, int index){
     }
 }
 
-struct Node* buildHuffmanTree(struct Node** arr, int arrSize){
+Node* buildHuffmanTree(Node** arr, int arrSize){
 
     while(arrSize != 1){
-        struct Node* root = createNode('\0');
+        Node* root = createNode('\0');
         
         
         traverseDown(arr, 0, arrSize);
@@ -129,13 +129,13 @@ struct Node* buildHuffmanTree(struct Node** arr, int arrSize){
         arr[arrSize - 1] = root;
         traverseUp(arr, arrSize - 1);
     }
-    struct Node* root = arr[0];
+    Node* root = arr[0];
     arr[0] = NULL;
     free(arr);
     return root;
 }
 
-void freeTree(struct Node* root){
+void freeTree(Node* root){
     if(root->left == NULL && root->right == NULL){
         free(root);
         return;
@@ -146,7 +146,7 @@ void freeTree(struct Node* root){
     free(root);
 }
 
-void printTree(struct Node* root, bool isLeft){
+void printTree(Node* root, bool isLeft){
     if(isLeft){
         printf("\nleft: ");
     }
@@ -162,9 +162,9 @@ void printTree(struct Node* root, bool isLeft){
     printTree(root->right, false);
 }
 
-void assignNewCode(struct Node* root, struct Code** arr, int* index, uint16_t* currentCode, int* depth, int* treeSize){
+void assignNewCode(Node* root, Code** arr, int* index, uint16_t* currentCode, int* depth, int* treeSize){
     if(root->left == NULL && root->right == NULL){
-        arr[*index] = (struct Code*) malloc(sizeof(struct Code));
+        arr[*index] = (Code*) malloc(sizeof(Code));
         arr[*index]->ch = root->ch;
         arr[*index]->frequency = root->frequency;
         arr[*index]->code = *currentCode;
@@ -190,8 +190,8 @@ void assignNewCode(struct Node* root, struct Code** arr, int* index, uint16_t* c
 }
 
 int compare(const void* x, const void* y){
-    struct Code* codeX = *((struct Code**) x);
-    struct Code* codeY = *((struct Code**) y);
+    Code* codeX = *((Code**) x);
+    Code* codeY = *((Code**) y);
     if(codeX->frequency < codeY->frequency){
         return 1;
     }
@@ -201,17 +201,17 @@ int compare(const void* x, const void* y){
     return 0;
 }
 
-struct Code** assignCodes(struct Node* root, int arrSize, int* treeSize){
-    struct Code** arr = (struct Code**) malloc(sizeof(struct Code*) * arrSize);
+Code** assignCodes(Node* root, int arrSize, int* treeSize){
+    Code** arr = (Code**) malloc(sizeof(Code*) * arrSize);
     int index = 0;
     uint16_t currentCode = 0;
     int depth = 0;
     assignNewCode(root, arr, &index, &currentCode, &depth, treeSize);
-    qsort(arr, arrSize, sizeof(struct Code*), *compare);
+    qsort(arr, arrSize, sizeof(Code*), *compare);
     return arr;
 }
 
-void assignNewTree(struct Node* root, struct Tree** arr, int* index, bool isLeft){
+void assignNewTree(Node* root, Tree** arr, int* index, bool isLeft){
     if(root->left == NULL && root->right == NULL){
         --(*index);
         if(isLeft){
@@ -224,18 +224,18 @@ void assignNewTree(struct Node* root, struct Tree** arr, int* index, bool isLeft
         ++(*index);
         return;
     }
-    arr[*index] = (struct Tree*) malloc(sizeof(struct Tree));
+    arr[*index] = (Tree*) malloc(sizeof(Tree));
     arr[*index]->identefire = 0b10;
     ++(*index);
     assignNewTree(root->left, arr, index, 1);
-    arr[*index] = (struct Tree*) malloc(sizeof(struct Tree));
+    arr[*index] = (Tree*) malloc(sizeof(Tree));
     arr[*index]->identefire = 0b01;
     ++(*index);
     assignNewTree(root->right, arr, index, 0);
 }
 
-struct Tree** assignTree(struct Node* root, int treeSize){
-    struct Tree** arr = (struct Tree**) malloc(sizeof(struct Tree*) * treeSize);
+Tree** assignTree(Node* root, int treeSize){
+    Tree** arr = (Tree**) malloc(sizeof(Tree*) * treeSize);
     int index = 0;
     assignNewTree(root, arr, &index, 0);
     return arr;

@@ -6,5 +6,5 @@ C_DEFINES = -DMEMWATCH -DMW_STDIO
 
 C_INCLUDES = -I/home/antonin/Code/C/HuffmanCoding/memwatch
 
-C_FLAGS = 
+C_FLAGS = -Wall
 
