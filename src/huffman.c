@@ -284,3 +284,83 @@ uint16_t createFileHead(int textBitSize, int treeBitSize){ // I don't even know 
     head |= bytesNeededTree;
     return head;
 } // This thing can support text up to 4 Gigs long after compression, so yeah. I think...
+
+uint8_t* treeToBin(Tree** treeArr, int treeSize, int* treeBitSize, int* treeBinSize){
+    int bitSize = 0;
+    for(int i = 0; i < treeSize; ++i){
+        switch (treeArr[i]->identefire) {
+            case 0b00:
+            case 0b11:
+                bitSize += 10;
+                break;
+            default:
+                bitSize += 2;
+                break;
+        }
+    }
+    int roundedBit = 0;
+    if(bitSize % 8 == 0)
+        roundedBit = bitSize;
+    else
+        roundedBit = bitSize / 8 * 8 + 8;
+
+    int byteSize = roundedBit / 8;
+    printf("%d\n", byteSize);
+    uint8_t* arr = (uint8_t*) calloc(byteSize, sizeof(uint8_t));
+    
+    int bitIndex = 0;
+    int arrIndex = -1;
+    for(int i = 0; i < treeSize; ++i){
+        /*printf("index: %d\n", i);
+        printf("bitIndex: %d\n", bitIndex);
+        printf("arrIndex: %d\n", arrIndex);*/
+        if(bitIndex == 0){
+            //printf("neco: %d\n", i);
+            bitIndex = 8;
+            ++arrIndex;
+        }
+        bitIndex -= 2;
+        int crumb = treeArr[i]->identefire << bitIndex;
+        arr[arrIndex] |= crumb;
+        if(treeArr[i]->identefire == 0b00 || treeArr[i]->identefire == 0b11){
+            uint8_t ch = 0;
+            switch (bitIndex) {
+                case 0:
+                    //printf("case 0\n");
+                    ++arrIndex;
+                    arr[arrIndex] = treeArr[i]->ch;
+                    break;
+                case 2:
+                    //printf("case 2\n");
+                    ch = treeArr[i]->ch >> 6;
+                    arr[arrIndex] |= ch;
+                    ch = treeArr[i]->ch << 2;
+                    ++arrIndex;
+                    arr[arrIndex] |= ch;
+                    bitIndex = 2;
+                    break;
+                case 4:
+                    //printf("case 4\n");
+                    ch = treeArr[i]->ch >> 4;
+                    arr[arrIndex] |= ch;
+                    ch = treeArr[i]->ch << 4;
+                    ++arrIndex;
+                    arr[arrIndex] |= ch;
+                    bitIndex = 4;
+                    break;
+                case 6:
+                    //printf("case 6\n");
+                    ch = treeArr[i]->ch >> 2;
+                    arr[arrIndex] |= ch;
+                    ch = treeArr[i]->ch << 6;
+                    ++arrIndex;
+                    arr[arrIndex] |= ch;
+                    bitIndex = 6;
+                    break;
+            }
+        }
+    }
+    *treeBitSize = bitSize;
+    *treeBinSize = byteSize;
+    return arr;
+}

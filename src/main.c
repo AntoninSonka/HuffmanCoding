@@ -105,11 +105,26 @@ int main(int argc, char* argv[]){
     for(int i = 0; i < treeSize; ++i){
         printBinary(2, treeArr[i]->identefire);
         if(treeArr[i]->identefire == 0b00 || treeArr[i]->identefire == 0b11){
-            printf(", ch: %c", treeArr[i]->ch);
+            printBinary(8, treeArr[i]->ch);
+            /*if(treeArr[i]->ch == '\n'){
+                printf("\\n");
+            }
+            else{
+                printf("%c", treeArr[i]->ch);
+            }*/
         }
-        printf("\n");
     }
+    printf("\n");
     printf("------------------------------------------\n");
+    int treeBitSize = 0;
+    int treeBinSize = 0;
+    uint8_t* treeBinArr = treeToBin(treeArr, treeSize, &treeBitSize, &treeBinSize);
+    printf("\n%d\n", treeBinSize);
+    for(int i = 0; i < treeBinSize; ++i){
+        printBinary(8, treeBinArr[i]);
+    }
+    free(treeBinArr);
+    printf("\n");
     for(int i = 0; i < treeSize; ++i){
         free(treeArr[i]);
     }
@@ -117,16 +132,18 @@ int main(int argc, char* argv[]){
     for(int i = 0; i < arrSize; ++i){
         free(codeArr[i]);
     }
+    
+    
     free(codeArr);
 
     freeTree(root);
     free(text);
-    
-    printf("\ntest head\n");
+
+    /*printf("\ntest head\n");
     int treeBitSize = 127;
     int textBitSize = 127;
     uint16_t head = createFileHead(textBitSize, treeBitSize);
-    printf("%b", head);
+    printf("%b", head);*/
     printf("\n");
 
     return 0;

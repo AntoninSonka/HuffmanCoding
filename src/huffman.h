@@ -45,4 +45,6 @@ Tree** assignTree(Node*, int);
 
 uint16_t createFileHead(int, int);
 
+uint8_t* treeToBin(Tree**, int, int*, int*);
+
 #endif //! HUFFMAN_H
