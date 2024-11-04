@@ -305,17 +305,12 @@ uint8_t* treeToBin(Tree** treeArr, int treeSize, int* treeBitSize, int* treeBinS
         roundedBit = bitSize / 8 * 8 + 8;
 
     int byteSize = roundedBit / 8;
-    printf("%d\n", byteSize);
     uint8_t* arr = (uint8_t*) calloc(byteSize, sizeof(uint8_t));
     
     int bitIndex = 0;
     int arrIndex = -1;
     for(int i = 0; i < treeSize; ++i){
-        /*printf("index: %d\n", i);
-        printf("bitIndex: %d\n", bitIndex);
-        printf("arrIndex: %d\n", arrIndex);*/
         if(bitIndex == 0){
-            //printf("neco: %d\n", i);
             bitIndex = 8;
             ++arrIndex;
         }
@@ -326,12 +321,10 @@ uint8_t* treeToBin(Tree** treeArr, int treeSize, int* treeBitSize, int* treeBinS
             uint8_t ch = 0;
             switch (bitIndex) {
                 case 0:
-                    //printf("case 0\n");
                     ++arrIndex;
                     arr[arrIndex] = treeArr[i]->ch;
                     break;
                 case 2:
-                    //printf("case 2\n");
                     ch = treeArr[i]->ch >> 6;
                     arr[arrIndex] |= ch;
                     ch = treeArr[i]->ch << 2;
@@ -340,7 +333,6 @@ uint8_t* treeToBin(Tree** treeArr, int treeSize, int* treeBitSize, int* treeBinS
                     bitIndex = 2;
                     break;
                 case 4:
-                    //printf("case 4\n");
                     ch = treeArr[i]->ch >> 4;
                     arr[arrIndex] |= ch;
                     ch = treeArr[i]->ch << 4;
@@ -349,7 +341,6 @@ uint8_t* treeToBin(Tree** treeArr, int treeSize, int* treeBitSize, int* treeBinS
                     bitIndex = 4;
                     break;
                 case 6:
-                    //printf("case 6\n");
                     ch = treeArr[i]->ch >> 2;
                     arr[arrIndex] |= ch;
                     ch = treeArr[i]->ch << 6;
@@ -363,4 +354,27 @@ uint8_t* treeToBin(Tree** treeArr, int treeSize, int* treeBitSize, int* treeBinS
     *treeBitSize = bitSize;
     *treeBinSize = byteSize;
     return arr;
+}
+
+uint8_t* textToBin(char* text, int textSize, Code** codes, int treeSize){
+    
+    /*
+     * count the number of bits required for the byte array
+     * round that to bytes
+     * devide it by 8 and create a byte array
+     *
+     * for every character
+     * > get the number of bits left
+     * > if its enough, fill the byte and continue
+     *   > if new byte is required, increase the counter for byte array
+     * > if its not enough, devide the code of character into multiple segments
+     * > add the segment, that fills the byte and move to next byte
+     * > repeat this untill the character code is in the byte array
+     * > if byte fills, move to next byte
+     * 
+     * return the byte array, return the bit size of the array, without filling
+     *
+     */
+
+    return NULL;
 }
