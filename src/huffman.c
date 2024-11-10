@@ -261,8 +261,11 @@ uint16_t createFileHead(int textBitSize, int treeBitSize){ // I don't even know 
     head <<= 3; // Adds how many zeros will fill the rest of text file
     head |= textPadding;
 
-    uint8_t bytesNeededText = ((((int)log2(textBitSize)) + 1) + 7) / 8; // This somehow works, I dont really know how or why, but yah
-    --bytesNeededText;
+    printf("%d x %d\n", textBitSize, roundedTextBitSize);
+    //uint8_t bytesNeededText = ((((int)log2(textBitSize)) + 1) + 7) / 8; // This somehow works, I dont really know how or why, but yah
+    uint8_t bytesNeededText = (((int)log2((int)(roundedTextBitSize / 8)))); // This somehow works, I dont really know how or why, but yah
+    bytesNeededText /= 8;
+    //--bytesNeededText;
     head <<= 2;
     head |= bytesNeededText;
     
@@ -278,8 +281,11 @@ uint16_t createFileHead(int textBitSize, int treeBitSize){ // I don't even know 
     head <<= 3;
     head |= treePadding;
 
-    uint8_t bytesNeededTree = ((((int)log2(textBitSize)) + 1) + 7) / 8;
-    --bytesNeededTree;
+    //uint8_t bytesNeededTree = ((((int)log2(textBitSize)) + 1) + 7) / 8;
+    //printf("%d x %d\n", treeBitSize, roundedTreeBitSize);
+    uint8_t bytesNeededTree = ((int)log2((int)(roundedTreeBitSize / 8)));
+    bytesNeededTree /= 8;
+    //--bytesNeededTree;
     head <<= 2;
     head |= bytesNeededTree;
     return head;
@@ -367,8 +373,8 @@ uint8_t* textToBin(char* text, int textSize, Code** codes, int treeSize, int* te
             }
         }
     }
+    *textBitSize = bitSize;
 
-    printf("\n");
 
     int roundedBit = 0;
     if(bitSize % 8 == 0)
@@ -378,6 +384,7 @@ uint8_t* textToBin(char* text, int textSize, Code** codes, int treeSize, int* te
 
     int byteSize = roundedBit / 8;
     
+    *textBinSize = byteSize;
 
     uint8_t* arr = (uint8_t*) calloc(byteSize, sizeof(uint8_t));
     int bitLeft = 8;
@@ -436,8 +443,6 @@ uint8_t* textToBin(char* text, int textSize, Code** codes, int treeSize, int* te
             bitLeft = 8;
         }
     }
-    *textBitSize = bitSize;
-    *textBinSize = byteSize;
 
     return arr;
 }

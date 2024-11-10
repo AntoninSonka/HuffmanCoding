@@ -119,12 +119,12 @@ int main(int argc, char* argv[]){
     int treeBitSize = 0;
     int treeBinSize = 0;
     uint8_t* treeBinArr = treeToBin(treeArr, treeSize, &treeBitSize, &treeBinSize);
-    printf("\n%d\n", treeBinSize);
+    /*printf("\n%d\n", treeBinSize);
     for(int i = 0; i < treeBinSize; ++i){
         printBinary(8, treeBinArr[i]);
-    }
+    }*/
 
-    printf("\ntext v bin\n");
+    /*printf("\ntext v bin\n");
     printf("text size: %d\n", textSize);
     for(int i = 0; i < textSize; ++i){
         for(int j = 0; j < treeSize; ++j){
@@ -133,18 +133,83 @@ int main(int argc, char* argv[]){
                 break;
             }
         }
-    }
+    }*/
 
     printf("\n");
     
     int textBitSize = 0;
     int textBinSize = 0;
     uint8_t* textBinArr = textToBin(text, textSize, codeArr, treeSize, &textBitSize, &textBinSize);
-    
+    /*printf("%d\n", textBinSize);
     for(int i = 0; i < textBinSize; ++i){
         printBinary(8, textBinArr[i]);
-    }
+    }*/
     printf("\n");
+
+
+    uint16_t head = createFileHead(textBitSize, treeBitSize);
+    //printf("%b", head);
+    printf("%x", head);
+    
+    //printf("\n");
+    uint16_t bytesNeededTree = head;
+    bytesNeededTree &= 0b11;
+    switch (bytesNeededTree) {
+        case 0b0:
+            printBinary(8, treeBinSize);
+            printf("%x", treeBinSize);
+            break;
+        case 0b1:
+            printBinary(16, treeBinSize);
+            printf("%x", treeBinSize);
+            break;
+        case 0b10:
+            printBinary(24, treeBinSize);
+            printf("%x", treeBinSize);
+            break;
+        case 0b11:
+            printBinary(32, treeBinSize);
+            printf("%x", treeBinSize);
+            break;
+    }
+    //printf("\n");
+    for(int i = 0; i < treeBinSize; ++i){
+        printf("%x", treeBinArr[i]);
+        //printBinary(8, treeBinArr[i]);
+    }
+    //printf("\n");
+    uint16_t bytesNeededText = head;
+    bytesNeededText >>= 5;
+    bytesNeededText &= 0b11;
+    switch (bytesNeededText) {
+        case 0b0:
+            //printBinary(8, textBinSize);
+            printf("%x", textBinSize);
+            break;
+        case 0b1:
+            //printBinary(16, textBinSize);
+            printf("%x", textBinSize);
+            break;
+        case 0b10:
+            //printBinary(24, textBinSize);
+            printf("%x", textBinSize);
+            break;
+        case 0b11:
+            //printBinary(32, textBinSize);
+            printf("%x", textBinSize);
+            break;
+    }
+    //printf("\n");
+    for(int i = 0; i < textBinSize; ++i){
+        printf("%x", textBinArr[i]);
+        //printBinary(8, textBinArr[i]);
+    }
+
+
+
+
+
+
 
     free(treeBinArr);
     free(textBinArr);
@@ -163,12 +228,6 @@ int main(int argc, char* argv[]){
     freeTree(root);
     free(text);
 
-    /*printf("\ntest head\n");
-    int treeBitSize = 127;
-    int textBitSize = 127;
-    uint16_t head = createFileHead(textBitSize, treeBitSize);
-    printf("%b", head);*/
-    printf("\n");
 
     return 0;
 }
