@@ -1,1 +1,1 @@
-/usr/bin/cc CMakeFiles/main.dir/src/file.c.o CMakeFiles/main.dir/src/huffman.c.o CMakeFiles/main.dir/src/main.c.o CMakeFiles/main.dir/memwatch/memwatch.c.o -o main  -lm
+/usr/bin/cc -Wl,--dependency-file,CMakeFiles/main.dir/link.d CMakeFiles/main.dir/src/file.c.o CMakeFiles/main.dir/src/huffman.c.o CMakeFiles/main.dir/src/main.c.o CMakeFiles/main.dir/memwatch/memwatch.c.o -o main  -lm

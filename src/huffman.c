@@ -356,25 +356,88 @@ uint8_t* treeToBin(Tree** treeArr, int treeSize, int* treeBitSize, int* treeBinS
     return arr;
 }
 
-uint8_t* textToBin(char* text, int textSize, Code** codes, int treeSize){
-    
-    /*
-     * count the number of bits required for the byte array
-     * round that to bytes
-     * devide it by 8 and create a byte array
-     *
-     * for every character
-     * > get the number of bits left
-     * > if its enough, fill the byte and continue
-     *   > if new byte is required, increase the counter for byte array
-     * > if its not enough, devide the code of character into multiple segments
-     * > add the segment, that fills the byte and move to next byte
-     * > repeat this untill the character code is in the byte array
-     * > if byte fills, move to next byte
-     * 
-     * return the byte array, return the bit size of the array, without filling
-     *
-     */
+uint8_t* textToBin(char* text, int textSize, Code** codes, int treeSize, int* textBitSize, int* textBinSize){
 
-    return NULL;
+    int bitSize = 0;
+    for(int i = 0; i < textSize; ++i){
+        for(int j = 0; j < treeSize; ++j){
+            if(text[i] == codes[j]->ch){
+                bitSize += codes[j]->depth;
+                break;
+            }
+        }
+    }
+
+    printf("\n");
+
+    int roundedBit = 0;
+    if(bitSize % 8 == 0)
+        roundedBit = bitSize;
+    else
+        roundedBit = bitSize / 8 * 8 + 8;
+
+    int byteSize = roundedBit / 8;
+    
+
+    uint8_t* arr = (uint8_t*) calloc(byteSize, sizeof(uint8_t));
+    int bitLeft = 8;
+    
+    int codeIndex = 0;
+    for(int i = 0; i < treeSize; ++i){
+        if(text[0] == codes[i]->ch){
+            codeIndex = i;
+            break;
+        }
+    }
+    uint16_t currentCode = codes[codeIndex]->code;
+    int currentDepth = codes[codeIndex]->depth;
+    int textIndex = 0;
+    for(int i = 0; i < byteSize; ++i){
+        if(currentDepth < bitLeft){
+            ++textIndex;
+            if(textIndex >= textSize){
+                --textIndex;
+            }
+
+            bitLeft -= currentDepth;
+            currentCode <<= bitLeft;
+            arr[i] |= currentCode;
+            for(int j = 0; j < treeSize; ++j){
+                if(text[textIndex] == codes[j]->ch){
+                    codeIndex = j;
+                    break;
+                }
+            }
+            currentCode = codes[codeIndex]->code;
+            currentDepth = codes[codeIndex]->depth;
+            --i;
+        }
+        else if(currentDepth == bitLeft){
+            arr[i] |= currentCode;
+            bitLeft = 8;
+            ++textIndex;
+            for(int j = 0; j < treeSize; ++j){
+                if(text[textIndex] == codes[j]->ch){
+                    codeIndex = j;
+                    break;
+                }
+            }
+            currentCode = codes[codeIndex]->code;
+            currentDepth = codes[codeIndex]->depth;
+        }
+        else{
+            uint16_t previousCode = currentCode;
+            currentCode >>= (currentDepth - bitLeft);
+            arr[i] |= currentCode;
+            currentDepth -= bitLeft;
+            currentCode = previousCode;
+            uint16_t mask = pow(2, currentDepth) - 1;
+            currentCode &= mask;
+            bitLeft = 8;
+        }
+    }
+    *textBitSize = bitSize;
+    *textBinSize = byteSize;
+
+    return arr;
 }

@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/antonin/Code/C/HuffmanCoding/src/file.c" "CMakeFiles/main.dir/src/file.c.o" "gcc" "CMakeFiles/main.dir/src/file.c.o.d"
   "/home/antonin/Code/C/HuffmanCoding/src/huffman.c" "CMakeFiles/main.dir/src/huffman.c.o" "gcc" "CMakeFiles/main.dir/src/huffman.c.o.d"
   "/home/antonin/Code/C/HuffmanCoding/src/main.c" "CMakeFiles/main.dir/src/main.c.o" "gcc" "CMakeFiles/main.dir/src/main.c.o.d"
+  "" "main" "gcc" "CMakeFiles/main.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

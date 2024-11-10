@@ -123,7 +123,31 @@ int main(int argc, char* argv[]){
     for(int i = 0; i < treeBinSize; ++i){
         printBinary(8, treeBinArr[i]);
     }
+
+    printf("\ntext v bin\n");
+    printf("text size: %d\n", textSize);
+    for(int i = 0; i < textSize; ++i){
+        for(int j = 0; j < treeSize; ++j){
+            if(text[i] == codeArr[j]->ch){
+                printBinary(codeArr[j]->depth, codeArr[j]->code);
+                break;
+            }
+        }
+    }
+
+    printf("\n");
+    
+    int textBitSize = 0;
+    int textBinSize = 0;
+    uint8_t* textBinArr = textToBin(text, textSize, codeArr, treeSize, &textBitSize, &textBinSize);
+    
+    for(int i = 0; i < textBinSize; ++i){
+        printBinary(8, textBinArr[i]);
+    }
+    printf("\n");
+
     free(treeBinArr);
+    free(textBinArr);
     printf("\n");
     for(int i = 0; i < treeSize; ++i){
         free(treeArr[i]);

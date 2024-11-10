@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/main.dir/link.d"
   "CMakeFiles/main.dir/memwatch/memwatch.c.o"
   "CMakeFiles/main.dir/memwatch/memwatch.c.o.d"
   "CMakeFiles/main.dir/src/file.c.o"

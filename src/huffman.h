@@ -47,4 +47,6 @@ uint16_t createFileHead(int, int);
 
 uint8_t* treeToBin(Tree**, int, int*, int*);
 
+uint8_t* textToBin(char*, int, Code**, int, int*, int*);
+
 #endif //! HUFFMAN_H
